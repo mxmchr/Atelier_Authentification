@@ -20,7 +20,8 @@ jobs:
 
       - name: Create sensitive file
         run: |
-          echo "${{ secrets.MY_SECRET_FILE_CONTENT }}" > .htpasswd  
+          echo "${{ secrets.MY_SECRET_FILE_CONTENT }}" > .htpasswd 
+          
   Copy:
     needs: Connexion
     runs-on: ubuntu-latest
