@@ -2,7 +2,7 @@
 // Nom d'utilisateur et mot de passe corrects
 $valid_users = [
     'admin' => 'secret',
-    'user' => 'utilisateur'
+    'user' => '1234'
 ];
 
 // Vérifier si l'utilisateur a envoyé des identifiants
