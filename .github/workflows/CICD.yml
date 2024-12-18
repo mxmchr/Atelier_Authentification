@@ -48,4 +48,4 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: |
             cd $HOME/www/atelier1
-            echo "${{ secrets.MY_SECRET_FILE_CONTENT }}" > .htpasswd
+            echo "${{ secrets.HTPASSWD }}" > .htpasswd
