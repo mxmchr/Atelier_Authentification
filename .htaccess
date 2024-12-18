@@ -1,4 +1,0 @@
-AuthName "Accès protégé"
-AuthType Basic
-AuthUserFile /home/chretien/www/.htpasswd
-Require valid-user
