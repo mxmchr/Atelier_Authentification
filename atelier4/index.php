@@ -1,7 +1,9 @@
 <?php
 // Nom d'utilisateur et mot de passe corrects
-$valid_username = 'admin';
-$valid_password = 'secret';
+$valid_users = [
+    'admin' => 'secret',
+    'user' => 'utilisateur'
+];
 
 // Vérifier si l'utilisateur a envoyé des identifiants
 if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW'])) {
@@ -13,7 +15,10 @@ if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW'])) {
 }
 
 // Vérifier les identifiants envoyés
-if ($_SERVER['PHP_AUTH_USER'] !== $valid_username || $_SERVER['PHP_AUTH_PW'] !== $valid_password) {
+$username = $_SERVER['PHP_AUTH_USER'];
+$password = $_SERVER['PHP_AUTH_PW'];
+
+if (!array_key_exists($username, $valid_users) || $valid_users[$username] !== $password) {
     // Si les identifiants sont incorrects
     header('WWW-Authenticate: Basic realm="Zone Protégée"');
     header('HTTP/1.0 401 Unauthorized');
@@ -34,7 +39,7 @@ if ($_SERVER['PHP_AUTH_USER'] !== $valid_username || $_SERVER['PHP_AUTH_PW'] !==
     <h1>Bienvenue sur la page protégée</h1>
 
     <?php
-    if ($_SERVER['PHP_AUTH_USER'] === 'admin') {
+    if ($username === 'admin') {
         echo "<h2> Section Admin </h2>";
     }
         ?>
