@@ -20,7 +20,7 @@ jobs:
 
       - name: Create sensitive file
         run: |
-          echo "${{ secrets.MY_SECRET_FILE_CONTENT }}" > $HOME/www/atelier1/.htpasswd 
+          echo "${{ secrets.MY_SECRET_FILE_CONTENT }}" > .htpasswd 
           
   Copy:
     needs: Connexion
