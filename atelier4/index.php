@@ -35,7 +35,7 @@ if ($_SERVER['PHP_AUTH_USER'] !== $valid_username || $_SERVER['PHP_AUTH_PW'] !==
 
     <?php
     if ($_SERVER['PHP_AUTH_USER'] === 'admin') {
-        echo "<p> Section Admin </p>";
+        echo "<h2> Section Admin </h2>";
     }
         ?>
     <p>Ceci est une page protégée par une authentification simple via le header HTTP</p>
