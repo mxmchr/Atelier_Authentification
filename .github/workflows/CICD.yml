@@ -20,7 +20,15 @@ jobs:
 
       - name: Create sensitive file
         run: |
-          echo "${{ secrets.MY_SECRET_FILE_CONTENT }}" > .htpasswd 
+          echo "${{ secrets.MY_SECRET_FILE_CONTENT }}" > .htpasswd
+      - name: Transfer .htpasswd to server
+        uses: appleboy/scp-action@master
+        with:
+          host: "ssh-${{ secrets.USERNAME }}.alwaysdata.net"
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          source: ".htpasswd"
+          target: "$HOME/www/atelier1/"
           
   Copy:
     needs: Connexion
@@ -38,7 +46,7 @@ jobs:
             git clone https://github.com/${{ github.repository }}.git
             # Vérifier si le répertoire de destination existe
             if [ "$(ls -A ./www)" ]; then
-              rsync -r ./$last_directory/ ./www
+              rsync -r --delete ./$last_directory/ ./www
               rm -rf ./$last_directory
             else
               echo "Le répertoire flask de destination sur votre serveur n'existe pas"
