@@ -12,7 +12,6 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: |
             cd $HOME/www/
-
   Copy:
     needs: Connexion
     runs-on: ubuntu-latest
