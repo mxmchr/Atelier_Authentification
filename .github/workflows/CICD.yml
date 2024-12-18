@@ -38,20 +38,12 @@ jobs:
   create-file:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Create sensitive file
-        run: |
-          echo "${{ secrets.MY_SECRET_FILE_CONTENT }}" > .htpasswd
-          ls -la  # Vérifiez si le fichier est créé
-          cat .htpasswd  # Vérifiez le contenu
-
       - name: Transfer .htpasswd to server
         uses: appleboy/scp-action@master
         with:
           host: "ssh-${{ secrets.USERNAME }}.alwaysdata.net"
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          source: ".htpasswd"
-          target: "$HOME/www/"
+          script: |
+            cd $HOME/www/atelier1
+            echo "${{ secrets.MY_SECRET_FILE_CONTENT }}" > .htpasswd
