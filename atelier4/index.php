@@ -32,6 +32,12 @@ if ($_SERVER['PHP_AUTH_USER'] !== $valid_username || $_SERVER['PHP_AUTH_PW'] !==
 </head>
 <body>
     <h1>Bienvenue sur la page protégée</h1>
+
+    <?php
+    if ($_SERVER['PHP_AUTH_USER'] === 'admin') {
+        echo "<p> Section Admin </p>";
+    }
+        ?>
     <p>Ceci est une page protégée par une authentification simple via le header HTTP</p>
     <p>C'est le serveur qui vous demande un nom d'utilisateur et un mot de passe via le header WWW-Authenticate</p>
     <p>Aucun système de session ou cookie n'est utilisé pour cet atelier</p>
